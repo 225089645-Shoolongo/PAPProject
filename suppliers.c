@@ -33,6 +33,7 @@ int supplierReadText(char text[], int size)
     length = strlen(text);
 
     if (length > 0 && text[length - 1] != '\n')  
+    {
         while (getchar() != '\n')
             ;
         return 0;
