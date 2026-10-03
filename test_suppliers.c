@@ -1,27 +1,31 @@
 #include <stdio.h>
-#include "suppliers.h"       /* ← only the HEADER, not the .c file */
+#include "suppliers.h"
 
 int main(void)
 {
-    Supplier suppliers[MAX_SUPPLIERS];
-    int count = 0;
-    int choice;
+    int choice = -1;
 
     do {
         printf("\n===== SUPPLIER TEST MENU =====\n");
         printf("1. Add Supplier\n");
         printf("2. Display Suppliers\n");
-        printf("3. Search Supplier\n");
+        printf("3. Search Supplier by ID\n");
+        printf("4. Search Supplier by Name\n");
         printf("0. Exit\n");
         printf("Enter choice: ");
 
-        scanf("%d", &choice);
-        getchar();
+        if (scanf("%d", &choice) != 1)
+        {
+            choice = -1; 
+        }
+        while (getchar() != '\n')
+            ;
 
         switch (choice) {
-            case 1: addSupplier(suppliers, &count); break;
-            case 2: displaySuppliers(suppliers, count); break;
-            case 3: searchSupplier(suppliers, count); break;
+            case 1: addSupplier(); break;
+            case 2: displaySuppliers(); break;
+            case 3: searchSupplier(); break;
+            case 4: searchSupplierByName(); break;
             case 0: printf("Goodbye.\n"); break;
             default: printf("Invalid choice.\n");
         }
