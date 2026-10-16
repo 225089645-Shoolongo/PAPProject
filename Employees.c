@@ -4,12 +4,11 @@
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
-#include "employees.h"
+#include "Employee.h"
 
 Employee employees[MAX_EMPLOYEES];
-int employeeCount = 0;
+int empCount = 0;
 
-// Validates a date in YYYY-MM-DD format (real calendar date, not in the future year)
 static int isValidDate(const char *d) {
     if (strlen(d) != 10 || d[4] != '-' || d[7] != '-') return 0;
 
@@ -40,13 +39,13 @@ double calculateNetSalary(double basic, double housing, double transport) {
 }
 
 void addEmployee(void) {
-    if (employeeCount >= MAX_EMPLOYEES) {
+    if (empCount >= MAX_EMPLOYEES) {
         printf("\nError: Employee database is full!\n");
         return;
     }
 
     Employee e;
-    e.id = employeeCount + 1;
+    e.id = empCount + 1;
 
     printf("\n===== ADD EMPLOYEE =====\n");
     printf("Assigned Employee ID: %d\n", e.id);
@@ -75,13 +74,13 @@ void addEmployee(void) {
                     "Invalid input. Allowance must be a non-negative number.");
 
     e.netSalary = calculateNetSalary(e.basicSalary, e.housingAllowance, e.transportAllowance);
-    employees[employeeCount++] = e;
+    employees[empCount++] = e;
 
     printf("\nEmployee record [ID: %d] successfully added!\n\n", e.id);
 }
 
 void displayEmployees(void) {
-    if (employeeCount == 0) {
+    if (empCount == 0) {
         printf("\nNo employee records found.\n\n");
         return;
     }
@@ -89,7 +88,7 @@ void displayEmployees(void) {
     printf("\n==================================== EMPLOYEE LIST ====================================\n");
     printf("%-8s %-20s %-12s %-15s %-12s %-12s\n", "ID", "Name", "DOB", "Department", "Basic (N$)", "Net (N$)");
     printf("---------------------------------------------------------------------------------------\n");
-    for (int i = 0; i < employeeCount; i++) {
+    for (int i = 0; i < empCount; i++) {
         printf("%-8d %-20s %-12s %-15s %-12.2f %-12.2f\n", 
                employees[i].id, employees[i].name, employees[i].dob, 
                employees[i].department, employees[i].basicSalary, employees[i].netSalary);
@@ -98,7 +97,7 @@ void displayEmployees(void) {
 }
 
 void searchEmployee(void) {
-    if (employeeCount == 0) {
+    if (empCount == 0) {
         printf("\nNo employees available to search.\n\n");
         return;
     }
@@ -110,7 +109,7 @@ void searchEmployee(void) {
     int queryId = atoi(query);
     int found = 0;
 
-    for (int i = 0; i < employeeCount; i++) {
+    for (int i = 0; i < empCount; i++) {
         if ((queryId > 0 && employees[i].id == queryId) || strcmp(employees[i].name, query) == 0) {
             printf("\n--- Employee Found ---\n");
             printf("ID:                %d\n", employees[i].id);
@@ -155,3 +154,4 @@ void employeeSubMenu(void) {
         }
     } while (choice != 4);
 }
+            
