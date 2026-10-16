@@ -2,24 +2,25 @@
 #include <string.h>
 #include "suppliers.h"
 
-int  supplierIDs[MAX_SUPPLIERS];
+int supplierIDs[MAX_SUPPLIERS];
 char supplierNames[MAX_SUPPLIERS][100];
 char supplierEmails[MAX_SUPPLIERS][100];
 char supplierPhones[MAX_SUPPLIERS][30];
 char supplierTowns[MAX_SUPPLIERS][50];
-int  supplierCount = 0;
+int supplierCount = 0;
+
 int supplierReadNumber(void)
 {
     int number;
 
     if (scanf("%d", &number) != 1)
     {
-        while (getchar() != '\n')   
+        while (getchar() != '\n')    
             ;
         return -1;
     }
 
-    while (getchar() != '\n')      
+    while (getchar() != '\n')       
         ;
     return number;
 }
