@@ -1,25 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#include "employees.h"
-#include "budget.h"
+#include "Employee.h"
+#include "Budget.h"
 #include "suppliers.h"
 #include "assets.h"
 #include "reports.h"
 
-/* Prototypes of the functions called from this file (they are defined in the module files) */
-void employeeMenu(void);
+void employeeSubMenu(void);
 void budgetMenu(void);
 void assetMenu(void);
 void displayReportsMenu(void);
 
-int  supplierReadNumber(void);
+int supplierReadNumber(void);
 void addSupplier(void);
 void displaySuppliers(void);
 void searchSupplier(void);
 void searchSupplierByName(void);
 
-/* The supplier module has no menu of its own, so the supplier menu lives here. */
 static void supplierMenu(void)
 {
     int choice = 0;
@@ -82,7 +80,7 @@ int main(void)
 
         switch (choice)
         {
-            case 1: employeeMenu(); break;
+            case 1: employeeSubMenu(); break;
             case 2: budgetMenu(); break;
             case 3: supplierMenu(); break;
             case 4: assetMenu(); break;
