@@ -6,9 +6,9 @@
 #define MAX_EMPLOYEES 100
 
 typedef struct {
-    int id;                   // Sequential numeric ID starting from 1
+    int id;                    // Sequential numeric ID starting from 1
     char name[STR_LEN];
-    char dob[STR_LEN];        // Date of Birth (YYYY-MM-DD)
+    char dob[STR_LEN];         // Date of Birth (YYYY-MM-DD)
     char department[STR_LEN];
     double basicSalary;
     double housingAllowance;
@@ -16,9 +16,8 @@ typedef struct {
     double netSalary;
 } Employee;
 
-// Global employee repository (defined in employees.c)
 extern Employee employees[MAX_EMPLOYEES];
-extern int employeeCount;
+extern int empCount;
 
 double calculateNetSalary(double basic, double housing, double transport);
 void addEmployee(void);
