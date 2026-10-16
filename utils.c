@@ -14,8 +14,6 @@ static void removeNewline(char *str) {
     }
 }
 
-// Reads one line of input safely. Discards any overflow beyond the buffer
-// so leftover characters never leak into the next prompt.
 void readLine(char *buf, int size) {
     if (fgets(buf, size, stdin) == NULL) {
         printf("\nInput closed. Exiting program.\n");
@@ -28,7 +26,6 @@ void readLine(char *buf, int size) {
     removeNewline(buf);
 }
 
-// Returns 1 if the string is empty or contains only whitespace
 int isBlank(const char *str) {
     for (; *str; str++) {
         if (!isspace((unsigned char)*str)) return 0;
@@ -36,7 +33,6 @@ int isBlank(const char *str) {
     return 1;
 }
 
-// Keeps asking until the user enters a non-blank value
 void readRequired(const char *prompt, char *buf, int size, const char *fieldName) {
     while (1) {
         printf("%s", prompt);
@@ -46,8 +42,6 @@ void readRequired(const char *prompt, char *buf, int size, const char *fieldName
     }
 }
 
-// Reads a whole integer. Rejects letters, decimals and trailing junk (e.g. "5abc").
-// Returns 1 on success, 0 on invalid input.
 int readInt(int *out) {
     char buf[STR_LEN];
     char *end;
@@ -63,8 +57,6 @@ int readInt(int *out) {
     return 1;
 }
 
-// Reads a non-negative number. Rejects letters, trailing junk (e.g. "5000abc"),
-// negative values, and nan/inf.
 double readNonNegativeDouble(const char *prompt, const char *errMsg) {
     char buf[STR_LEN];
     char *end;
@@ -83,7 +75,6 @@ double readNonNegativeDouble(const char *prompt, const char *errMsg) {
     }
 }
 
-// Portable case-insensitive substring search (replaces non-standard strcasestr)
 int containsCaseInsensitive(const char *haystack, const char *needle) {
     if (!*needle) return 1;
     for (; *haystack; haystack++) {
