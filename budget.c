@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-#include "budget.h"
+#include "Budget.h"
 
 Budget budgets[MAX_BUDGETS];
 int budget_count = 0;
-
 
 static void clearInputBuffer(void)
 {
@@ -15,7 +14,6 @@ static void clearInputBuffer(void)
     }
 }
 
-
 static void readLine(char text[], int size)
 {
     if (fgets(text, size, stdin) != NULL)
@@ -23,7 +21,6 @@ static void readLine(char text[], int size)
         text[strcspn(text, "\n")] = '\0';
     }
 }
-
 
 int findDepartment(char name[])
 {
@@ -40,12 +37,10 @@ int findDepartment(char name[])
     return -1;
 }
 
-
 double getRemaining(int i)
 {
     return budgets[i].allocated - budgets[i].expenditure;
 }
-
 
 void printBudget(int i)
 {
@@ -71,7 +66,6 @@ void printBudget(int i)
     }
 }
 
-
 void addBudget(void)
 {
     int id;
@@ -87,7 +81,6 @@ void addBudget(void)
     }
 
     printf("\n===== ADD DEPARTMENT BUDGET =====\n");
-
 
     while (1)
     {
@@ -174,8 +167,6 @@ void addBudget(void)
     printf("\nBudget added successfully!\n");
 }
 
-
-/* Add money spent to a department */
 void recordExpenditure(void)
 {
     char department[50];
@@ -200,7 +191,6 @@ void recordExpenditure(void)
         printf("Department not found.\n");
         return;
     }
-
 
     while (1)
     {
@@ -237,8 +227,6 @@ void recordExpenditure(void)
     }
 }
 
-
-/* Show all budgets */
 void displayBudgets(void)
 {
     int i;
@@ -256,7 +244,6 @@ void displayBudgets(void)
         printBudget(i);
     }
 }
-
 
 void displayExceededBudgets(void)
 {
@@ -286,7 +273,6 @@ void displayExceededBudgets(void)
     }
 }
 
-
 void budSummaryReport(void)
 {
     int i;
@@ -312,7 +298,6 @@ void budSummaryReport(void)
     printf("Remaining budget: N$%.2f\n", totalAllocated - totalExpenditure);
 }
 
-
 int getBudgetCount(void)
 {
     return budget_count;
@@ -322,7 +307,6 @@ const Budget *getBudgetArray(void)
 {
     return budgets;
 }
-
 
 void budgetMenu(void)
 {
