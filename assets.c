@@ -2,23 +2,9 @@
 #include <string.h>
 #include "assets.h"
 
-#define MAX_ASSETS 100
+Asset assets[MAX_ASSETS];
+int assetCount = 0;
 
-typedef struct
-{
-    char assetID[20];
-    char assetName[50];
-    char assetType[30];
-    double purchaseValue;
-    char department[50];
-    char condition[30];
-} Asset;
-
-static Asset assets[MAX_ASSETS];
-static int assetCount = 0;
-
-
-/* Clears unwanted characters from keyboard input */
 static void clearInputBuffer(void)
 {
     int ch;
@@ -28,8 +14,6 @@ static void clearInputBuffer(void)
     }
 }
 
-
-/* Reads text including spaces */
 static void readLine(char text[], int size)
 {
     if (fgets(text, size, stdin) != NULL)
@@ -38,8 +22,6 @@ static void readLine(char text[], int size)
     }
 }
 
-
-/* Add a new municipal asset */
 void addAsset(void)
 {
     int i;
@@ -62,7 +44,6 @@ void addAsset(void)
         return;
     }
 
-    /* Check if Asset ID already exists */
     for (i = 0; i < assetCount; i++)
     {
         if (strcmp(assets[i].assetID,
@@ -117,8 +98,6 @@ void addAsset(void)
     printf("\nAsset added successfully.\n");
 }
 
-
-/* Display all registered assets */
 void displayAssets(void)
 {
     int i;
@@ -145,8 +124,6 @@ void displayAssets(void)
     }
 }
 
-
-/* Search for an asset */
 void searchAsset(void)
 {
     char search[50];
@@ -190,8 +167,6 @@ void searchAsset(void)
     }
 }
 
-
-/* Asset Management submenu */
 void assetMenu(void)
 {
     int choice;
@@ -240,4 +215,14 @@ void assetMenu(void)
         }
 
     } while (choice != 4);
+}
+
+int getAssetCount(void)
+{
+    return assetCount;
+}
+
+const Asset *getAssetArray(void)
+{
+    return assets;
 }
